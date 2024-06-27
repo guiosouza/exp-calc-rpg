@@ -80,7 +80,7 @@
           let times = 2;
           grindMessage = `“The Grind” - essa tarefa agora vale ${times}X um pack de 99999.`;
         } else {
-          let times = Math.floor((level - 720) / 30) + 3;
+          let times = Math.floor((level - 720) / 20) + 3;
           grindMessage = `“The Grind” - essa tarefa agora vale ${times}X um pack de 99999.`;
         }
 
@@ -100,7 +100,7 @@
           }
 
           // EXP ON SECOND SEASON
-          let increment = Math.floor((level - 720) / 30);
+          let increment = Math.floor((level - 720) / 20);
 
           if (level >= 720) {
             let base = 5;
@@ -116,7 +116,7 @@
       
         let exerciseMessage;
         let exerciseExp = 3000 * Math.ceil((level + 1) / 10);
-        
+
         if(exerciseExp < 99000) {
           exerciseMessage = `“Exercícios” - essa tarefa agora vale ${exerciseExp} EXP.`;
           
@@ -132,8 +132,8 @@
         }
 
         if(exerciseExp >= 99999 && level >= 720) {
-          let times = Math.floor((level - 720) / 30) + 3;
-          let increment = Math.floor((level - 720) / 30);
+          let times;
+          let increment = Math.floor((level - 720) / 20);
           let base = 10;
           times = base + increment;
 
