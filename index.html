@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Level Checker</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      input[type="number"] {
+        width: 90%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .result {
+        margin-top: 20px;
+        font-weight: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <label for="level">Digite seu nível:</label>
+      <input type="number" id="level" min="0" placeholder="Digite seu nível" />
+      <button onclick="checkLevel()">Verificar EXP</button>
+      <div id="result" class="result"></div>
+    </div>
+
+    <script>
+      function checkLevel() {
+        const level = parseInt(document.getElementById("level").value);
+        const resultDiv = document.getElementById("result");
+
+        if (isNaN(level) || level < 0) {
+          resultDiv.innerHTML = "Por favor, digite um nível válido.";
+          return;
+        }
+
+        // Calcular EXP para "The Grind"
+        let grindExp = 3000 * Math.ceil((level + 1) / 10);
+        let grindMessage;
+
+        if (grindExp < 99000) {
+          grindMessage = `“The Grind” - essa tarefa agora vale ${grindExp} EXP.`;
+        }
+        else if(grindExp == 99000) {
+          grindMessage = `“The Grind” - essa tarefa agora vale ${grindExp} EXP.`;
+        }
+        else if (grindExp > 99000 && grindExp <= 102000) {
+          grindExp = 99999;
+          grindMessage = `“The Grind” - essa tarefa agora vale ${grindExp} EXP.`;
+        } else if (grindExp >= 99999 && level < 720) {
+          let times = 2;
+          grindMessage = `“The Grind” - essa tarefa agora vale ${times}X um pack de 99999.`;
+        } else {
+          let times = Math.floor((level - 720) / 30) + 3;
+          grindMessage = `“The Grind” - essa tarefa agora vale ${times}X um pack de 99999.`;
+        }
+
+        // Calcular EXP para "Water"
+        let waterExp = 2000 * Math.ceil((level + 1) / 10);
+        let waterMessage;
+
+        if (waterExp > 98000 && waterExp <= 100000) {
+          waterExp = 99999;
+
+          waterMessage = `“Water” - essa tarefa agora vale ${waterExp} EXP.`;
+        } else if (waterExp >= 99999) {
+          let times = Math.floor((level - 510) / 10) + 3;
+
+          if (level < 720 && times > 4) {
+            times = 4;
+          }
+
+          // EXP ON SECOND SEASON
+          let increment = Math.floor((level - 720) / 30);
+
+          if (level >= 720) {
+            let base = 5;
+            times = base + increment;
+          }
+
+          waterMessage = `“Water” - essa tarefa agora vale ${times}X um pack de 99999.`;
+        } else {
+          waterMessage = `“Water” - essa tarefa agora vale ${waterExp} EXP.`;
+        }
+
+        // Calcular EXP para "Exercícios"
+      
+        let exerciseMessage;
+        let exerciseExp = 3000 * Math.ceil((level + 1) / 10);
+        
+        if(exerciseExp < 99000) {
+          exerciseMessage = `“Exercícios” - essa tarefa agora vale ${exerciseExp} EXP.`;
+          
+        }
+        else if(exerciseExp === 99000) {
+          exerciseMessage = `“Exercícios” - essa tarefa agora vale ${exerciseExp} EXP.`;
+        }
+        else if(exerciseExp > 99000 && exerciseExp <= 102000) {
+          exerciseExp = 99999;
+          exerciseMessage = `“Exercícios” - essa tarefa agora vale ${exerciseExp} EXP.`;
+        } else if (exerciseExp >= 105000 && level < 720) {
+          exerciseMessage = `“Exercícios” - essa tarefa agora vale 1X sorteio a cada 30 segundos de treino.`;
+        }
+
+        if(exerciseExp >= 99999 && level >= 720) {
+          let times = Math.floor((level - 720) / 30) + 3;
+          let increment = Math.floor((level - 720) / 30);
+          let base = 10;
+          times = base + increment;
+
+          exerciseMessage = `“Exercícios” - essa tarefa agora vale ${times}X um pack de 99999.`;
+        }
+
+    
+        // Exibir resultados
+        resultDiv.innerHTML = `
+        <li style="margin-bottom: 16px">${grindMessage}</li>
+        <li style="margin-bottom: 16px">${waterMessage}</li>
+        <li style="margin-bottom: 16px">${exerciseMessage}</li>`;
+      }
+    </script>
+  </body>
+</html>
