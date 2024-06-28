@@ -80,7 +80,8 @@
           let times = 2;
           grindMessage = `“The Grind” - essa tarefa agora vale ${times}X um pack de 99999.`;
         } else {
-          let times = Math.floor((level - 720) / 20) + 3;
+
+          let times = Math.floor((level - 720) / 20) + 9;
           grindMessage = `“The Grind” - essa tarefa agora vale ${times}X um pack de 99999.`;
         }
 
@@ -103,7 +104,7 @@
           let increment = Math.floor((level - 720) / 20);
 
           if (level >= 720) {
-            let base = 10;
+            let base = 12;
             times = base + increment;
           }
 
@@ -134,7 +135,7 @@
         if(exerciseExp >= 99999 && level >= 720) {
           let times;
           let increment = Math.floor((level - 720) / 20);
-          let base = 25;
+          let base = 27;
           times = base + increment;
 
           exerciseMessage = `“Exercícios” - essa tarefa agora vale ${times}X um pack de 99999.`;
