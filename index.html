@@ -95,8 +95,15 @@
 					</div>
 				</div>
 			</header>
-
 			<main>
+				<section class="text-center">
+					<!-- <video autoplay loop muted plays-inline class="back-video">
+						<source
+							src="./Vídeo Marketplace Lagoinha.mp4"
+							type="video/mp4"
+						/>
+					</video> -->
+				</section>
 				<section class="hero text-center">
 					<div class="container-sm">
 						<div class="hero-inner">
@@ -144,7 +151,7 @@
 							<div class="features-wrap">
 								<div class="feature is-revealing">
 									<div class="feature-inner">
-										<div class="feature-icon">
+										<!-- <div class="feature-icon">
 											<svg
 												width="80"
 												height="80"
@@ -179,14 +186,24 @@
 													/>
 												</g>
 											</svg>
+										</div> -->
+										<div class="exp-sort-link">
+											<h3 class="feature-title">
+												Sortear EXP
+											</h3>
+											<p class="text-sm">
+												Para fazer sorteio dos packs,
+												clique
+												<a
+													target="blank"
+													href="https://guiosouza.github.io/number-draw/"
+												>
+													aqui
+												</a>
+											</p>
 										</div>
-										<h3 class="feature-title">Sortear EXP</h3>
-										<p class="text-sm">
-											Para fazer sorteio dos packs, clique <a target="blank" href="https://guiosouza.github.io/number-draw/"> aqui </a>
-										</p>
 									</div>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -212,7 +229,6 @@
 					</div>
 				</section>
 			</main>
-
 			<footer class="site-footer text-light">
 				<div class="container">
 					<div class="site-footer-inner">
@@ -279,43 +295,55 @@
 		<script src="dist/js/main.min.js"></script>
 		<script>
 			function calcularEXP() {
-				const nivel = parseInt(document.getElementById("nivel").value);
-				const tarefas = ["The Water", "Exercícios", "Alimentação"];
-				const expPorPack = 99999;
-				let resultado = "";
-
-				if (isNaN(nivel) || nivel < 0) {
-					alert(
-						"Por favor, digite um nível válido (número inteiro não negativo)."
-					);
-					return;
-				}
-
-				for (const tarefa of tarefas) {
-					let packs;
-					if (nivel < 20) {
-						packs = 1;
-					} else if (nivel >= 10 && tarefa === "Alimentação") {
-						packs = 3 * Math.floor(nivel / 20);
-					} else {
-						packs = 2 * Math.floor(nivel / 20);
+					const nivelInput = document.getElementById("nivel");
+					const nivel = parseInt(nivelInput.value);
+					const tarefas = ["The Water", "Exercícios", "Alimentação"];
+					const expPorPack = 99999;
+					let resultado = "";
+	
+					if (nivelInput.value.trim() === "") {
+							document.getElementById("resultado").innerHTML = "";
+							return;
 					}
-
-					const expTotal = packs * expPorPack;
-
-					resultado += `
-                        <div class="tarefa-resultado">
-                            <h2>${tarefa}</h2>
-                            <p>Nível: ${nivel}</p>
-                            <p>Número de packs para sortear: ${packs}</p>
-                            <p>EXP total a ser sorteada: ${expTotal.toLocaleString()}</p>
-                        </div>
-                    `;
-				}
-
-				document.getElementById("resultado").innerHTML = resultado;
+	
+					if (isNaN(nivel) || nivel < 0) {
+							alert("Por favor, digite um nível válido (número inteiro não negativo).");
+							return;
+					}
+	
+					for (const tarefa of tarefas) {
+							let packs;
+							if (nivel < 10) {
+									packs = 1;
+							} else if (nivel >= 10 && tarefa === "Alimentação") {
+									packs = 8 * Math.floor(nivel / 10);
+							} else {
+									packs = 2 * Math.floor(nivel / 10);
+							}
+	
+							const expTotal = packs * expPorPack;
+	
+							resultado += `
+									<div class="tarefa-resultado">
+											<h2>${tarefa}</h2>
+											<p>Nível: ${nivel}</p>
+											<p>Número de packs para sortear: ${packs}</p>
+											<p>EXP total a ser sorteada: ${expTotal.toLocaleString()}</p>
+									</div>
+							`;
+					}
+	
+					document.getElementById("resultado").innerHTML = resultado;
 			}
-		</script>
+	
+			// Adicione este evento para lidar com a tecla Enter
+			document.getElementById("nivel").addEventListener("keypress", function(event) {
+					if (event.key === "Enter") {
+							event.preventDefault();
+							calcularEXP();
+					}
+			});
+	</script>
 		<style>
 			.tarefa-resultado {
 				background-color: #f8f9fa;
@@ -327,6 +355,19 @@
 			.tarefa-resultado h2 {
 				color: #007bff;
 				margin-top: 0;
+			}
+
+			.back-video {
+				position: absolute;
+				right: 0;
+				width: 100%;
+			}
+
+			.exp-sort-link {
+				background-color: #ffffff;
+				border: 1px solid #e9ecef;
+				padding: 8px;
+				border-radius: 5px;
 			}
 		</style>
 	</body>
