@@ -15,7 +15,7 @@
     <script>
         function calcularEXP() {
             const nivel = parseInt(document.getElementById('nivel').value);
-            const tarefas = ["The Water", "Exercícios"];
+            const tarefas = ["The Water", "Exercícios", "Alimentação"];
             const expPorPack = 99999;
             let resultado = "";
 
@@ -28,6 +28,8 @@
                 let packs;
                 if (nivel < 10) {
                     packs = 1;
+                } else if( nivel >= 10 && tarefa === "Alimentação") {
+                    packs = 8 * Math.floor(nivel / 10);
                 } else {
                     packs = 2 * Math.floor(nivel / 10);
                 }
