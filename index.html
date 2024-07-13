@@ -216,12 +216,12 @@
 
 			for (const tarefa of tarefas) {
 				let packs;
-				if (nivel < 30) {
+				if (nivel < 33) {
 					packs = 1;
-				} else if (nivel >= 30 && tarefa === "Alimentação") {
-					packs = 2 * Math.floor(nivel / 30);
+				} else if (nivel >= 33 && tarefa === "Alimentação") {
+					packs = 3 * Math.floor(nivel / 33);
 				} else {
-					packs = 1 * Math.floor(nivel / 30);
+					packs = 1 * Math.floor(nivel / 33);
 				}
 
 				const expTotal = packs * expPorPack;
