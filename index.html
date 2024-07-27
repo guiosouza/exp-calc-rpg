@@ -278,15 +278,15 @@
         for (const tarefa of tarefas) {
           let packs = 1;
           if (tarefa === "The Grind") {
-            if (nivel < 114) {
+            if (nivel < 61) {
               packs = 1;
             } else {
               packs = Math.floor(nivel / 114);
             }
-          } else if (nivel >= 38) {
+          } else if (nivel >= 23) {
             packs = 1 * Math.floor(nivel / 38);
           }
-          if (nivel >= 38 && tarefa === "Alimentação") {
+          if (nivel >= 23 && tarefa === "Alimentação") {
             packs = 4 * Math.floor(nivel / 38);
           }
 
