@@ -314,8 +314,7 @@ a:active {
 	text-decoration: none;
 }
 h1,
-h2,
-h3,
+
 h4,
 h5,
 h6,
@@ -326,10 +325,16 @@ h6,
 .h5,
 .h6 {
 	clear: both;
-	color: #202b36;
+	color: #ffff;
 	font-family: "Roboto", sans-serif;
 	font-weight: 500;
 }
+
+
+h2, h3 {
+	color: #202b36;
+}
+
 h1,
 .h1 {
 	font-size: 36px;
@@ -665,7 +670,7 @@ label {
 .has-bottom-divider {
 	position: relative;
 }
-.has-bottom-divider::after {
+/* .has-bottom-divider::after {
 	content: "";
 	position: absolute;
 	bottom: 0;
@@ -680,7 +685,7 @@ label {
 		rgba(227, 231, 235, 0.6) 50%,
 		rgba(227, 231, 235, 0.1) 100%
 	);
-}
+} */
 .m-0 {
 	margin: 0;
 }
