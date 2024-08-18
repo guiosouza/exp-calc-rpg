@@ -278,16 +278,16 @@
         for (const tarefa of tarefas) {
           let packs = 1;
           if (tarefa === "The Grind") {
-            if (nivel < 114) {
+            if (nivel < 75) {
               packs = 1;
             } else {
-              packs = Math.floor(nivel / 114);
+              packs = Math.floor(nivel / 75);
             }
-          } else if (nivel >= 38) {
-            packs = 1 * Math.floor(nivel / 38);
+          } else if (nivel >= 22) {
+            packs = 1 * Math.floor(nivel / 22);
           }
-          if (nivel >= 38 && tarefa === "Alimentação") {
-            packs = 5 * Math.floor(nivel / 38);
+          if (nivel >= 22 && tarefa === "Alimentação") {
+            packs = 6 * Math.floor(nivel / 22);
           }
 
           const expTotal = packs * expPorPack;
